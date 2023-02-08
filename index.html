@@ -4,52 +4,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars</title>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Handlee&display=swap" rel="stylesheet">
+
 </head>
-<body>
+<body id="background">
 
     <div id="app">
-       <h1> Personagens do Star Wars Lego</h1>
-       <small>Olá, <span id="user-name"></span></small>
 
-            <div class="characters">
-                <div class="item">
-                    <image src="images/yoda.png" alt="Yoda" />
-                    <p>Yoda</p>
-                </div>
-                <div class="item">
-                    <image src="images/luke.png" alt="Luke Skywalker" />
-                    <p>Luke Skywalker</p>
-                </div>
-                <div class="item">
-                    <image src="images/leia.png" alt="Princesa Leia" />
-                    <p>Princesa Leia</p>
-                </div>
-                <div class="item">
-                    <image src="images/hansolo.png" alt="Han Solo" />
-                    <p>Han Solo</p>
-                </div>
-                <div class="item">
-                    <image src="images/vader.png" alt="Darth Vader" />
-                    <p>Darth Vader</p>
-                </div>
-                <div class="item">
-                    <image src="images/chewbacca.png" alt="Chewbacca" />
-                    <p>Chewbacca</p>
-                </div>
-                <div class="item">
-                    <image src="images/r2d2.png" alt="R2D2" />
-                   <p>R2D2</p>
-                </div>
-                <div class="item">
-                    <image src="images/c3po.png" alt="C3pO" />
-                    <p>C3pO</p>
-                </div>
+       <div class="top">
+            <div>
+                <h1> {{title}}</h1>       
+                <small>Olá, {{userName}}</small>
+            </div>
+            
+                <form>
+                        <input type="text" placeholder="Busca por nome" v-model="searchName"/>
+                        <button type="button" @click="search()">
+                            <span @click="search()" class="search material-symbols-outlined">
+                                search
+                            </span>
+                            <span>Buscar</span>
+                        </button>
+                </form>            
+       </div>
+
+       <div class="characters">
+            <div class="item" v-for="item of characters">
+                <image :src="item.avatar" :alt="item.nome" />
+                <p>{{item.nome}}</p>
+                <span  @click="like(item.nome)" data-test="like" class="like material-symbols-outlined">
+                    favorite
+                </span>
+                <span @click="remove(item.id)" class="delete material-symbols-outlined">
+                    delete
+                </span>                  
+
+                </div>               
             </div>
     </div>
 
-    <script type="text/javascript" src="js/app.js">        
-    </script>
+    <script type="text/javascript" src="js/vue.js"></script>      
+    <script type="text/javascript" src="js/app.js"></script>
     
 </body>
 </html>
